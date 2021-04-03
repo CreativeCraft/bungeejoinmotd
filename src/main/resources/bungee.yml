@@ -1,0 +1,4 @@
+name: BungeeJoinMOTD
+version: @version@
+main: org.creativecraft.bungeejoinmotd.BungeeJoinMOTD
+description: A simple but powerful on-join message of the day for BungeeCord.
