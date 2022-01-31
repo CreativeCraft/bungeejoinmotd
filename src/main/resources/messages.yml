@@ -1,0 +1,29 @@
+messages:
+  generic:
+    prefix: "&a&lBungeeJoin&fMOTD &8>&f "
+  view:
+    not-set: "The message of the day has not been set."
+    description: "View the message of the day."
+  add:
+    success: "You have successfully added line &a{line}&f with value:\n{value}"
+    failed: "Failed to add line &a{line}&f."
+    description: "Add a line to the message of the day."
+  remove:
+    success: "You have successfully removed line &a{line}&f."
+    failed: "Failed to remove line &a{line}&f."
+    invalid-line: "Line &a{line}&f does not exist."
+    description: "Remove a line from the message of the day."
+  set:
+    success: "You have &asuccessfully&f set line &a{line}&f to:\n{value}"
+    failed: "Failed to set line &a{line}&f."
+    invalid-line: "Line number must be between &a0&f and &a{size}&f."
+    description: "Set a line in the message of the day."
+  reload:
+    success: Plugin has been &asuccessfully&f reloaded.
+    failed: Plugin &cfailed&f to reload.
+    description: Reload the plugin configuration.
+  help:
+    header: "&a&m+&8&m                         &a&l BungeeJoin&fMOTD &8&m                         &a&m+"
+    format: "&8➝ &a/{command} &7{parameters} &f- {description}"
+    footer: "&a&m+&8&m                                                                         &a&m+"
+    description: View the plugin help.

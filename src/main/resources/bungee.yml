@@ -1,4 +1,5 @@
 name: BungeeJoinMOTD
-version: @version@
-main: org.creativecraft.bungeejoinmotd.BungeeJoinMOTD
+version: '${version}'
+main: org.creativecraft.bungeejoinmotd.BungeeJoinMotdPlugin
 description: A simple but powerful on-join message of the day for BungeeCord.
+author: Log1x
