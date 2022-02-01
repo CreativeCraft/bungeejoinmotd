@@ -25,5 +25,5 @@ messages:
   help:
     header: "&a&m+&8&m                         &a&l BungeeJoin&fMOTD &8&m                         &a&m+"
     format: "&8➝ &a/{command} &7{parameters} &f- {description}"
-    footer: "&a&m+&8&m                                                                         &a&m+"
+    footer: "&a&m+&8&m                                                                          &a&m+"
     description: View the plugin help.

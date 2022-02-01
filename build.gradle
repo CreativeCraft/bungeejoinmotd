@@ -27,7 +27,7 @@ shadowJar {
   relocate 'co.aikar.commands', 'org.creativecraft.bungeejoinmotd.acf'
   relocate 'co.aikar.locales', 'org.creativecraft.bungeejoinmotd.locales'
   relocate 'de.themoep.minedown', 'org.creativecraft.bungeejoinmotd.minedown'
-  relocate 'org.bstats', 'org.creativecraft'
+  relocate 'org.bstats', 'org.creativecraft.bungeejoinmotd.bstats'
 }
 
 processResources {

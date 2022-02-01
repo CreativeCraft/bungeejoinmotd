@@ -122,7 +122,7 @@ public final class BungeeJoinMotdPlugin extends Plugin {
      *
      * @return Configuration
      */
-    public Configuration getMessages() {
+    public Configuration getMessagesConfig() {
         return messagesConfig.getMessages();
     }
 
