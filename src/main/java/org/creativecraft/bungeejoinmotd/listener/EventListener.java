@@ -36,6 +36,6 @@ public class EventListener implements Listener {
             public void run() {
                 motd.forEach(string -> plugin.sendRawMessage(event.getPlayer(), string));
             }
-        }, 100, TimeUnit.MILLISECONDS);
+        }, Math.min(Math.max(plugin.getConfig().getInt("delay", 100), 100), 1000), TimeUnit.MILLISECONDS);
     }
 }

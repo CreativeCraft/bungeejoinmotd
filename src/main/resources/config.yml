@@ -1,4 +1,5 @@
 command: motd
+delay: 150
 motd:
   - "&a&m+&8&m                                              &a&m+&f"
   - "Welcome to &a&lLorem&fIpsum"
