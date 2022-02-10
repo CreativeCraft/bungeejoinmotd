@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'org.creativecraft'
-version = '1.0.1'
+version = '1.0.2'
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
@@ -12,14 +12,16 @@ targetCompatibility = '1.8'
 repositories {
     mavenCentral()
     maven { url = 'https://oss.sonatype.org/content/groups/public/' }
-    maven { url = "https://repo.aikar.co/content/groups/aikar/" }
-    maven { url = "https://repo.minebench.de/" }
+    maven { url = 'https://repo.aikar.co/content/groups/aikar/' }
+    maven { url = 'https://repo.minebench.de/' }
+    maven { url = 'https://jitpack.io' }
 }
 
 dependencies {
     compileOnly 'net.md-5:bungeecord-api:1.15-SNAPSHOT'
-    implementation "co.aikar:acf-bungee:0.5.0-SNAPSHOT"
-    implementation "de.themoep:minedown:1.7.0-SNAPSHOT"
+    implementation 'co.aikar:acf-bungee:0.5.0-SNAPSHOT'
+    implementation 'de.themoep:minedown:1.7.0-SNAPSHOT'
+    implementation 'com.github.simplix-softworks:simplixstorage:3.2.4'
     implementation 'org.bstats:bstats-bungeecord-lite:1.8'
 }
 
@@ -27,6 +29,7 @@ shadowJar {
   relocate 'co.aikar.commands', 'org.creativecraft.bungeejoinmotd.acf'
   relocate 'co.aikar.locales', 'org.creativecraft.bungeejoinmotd.locales'
   relocate 'de.themoep.minedown', 'org.creativecraft.bungeejoinmotd.minedown'
+  relocate 'de.leonhard.storage', 'org.creativecraft.bungeejoinmotd.storage'
   relocate 'org.bstats', 'org.creativecraft.bungeejoinmotd.bstats'
 }
 

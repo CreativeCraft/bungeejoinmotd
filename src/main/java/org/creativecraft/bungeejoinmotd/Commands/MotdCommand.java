@@ -103,7 +103,6 @@ public final class MotdCommand extends BaseCommand implements Listener {
                     .replace("{line}", Integer.toString(line))
                     .replace("{value}", value));
 
-            plugin.saveConfig();
         } catch (Exception e) {
             plugin.sendMessage(
                 sender,
@@ -132,7 +131,6 @@ public final class MotdCommand extends BaseCommand implements Listener {
 
         try {
             plugin.getConfig().set("motd", motd);
-            plugin.saveConfig();
 
             plugin.sendMessage(
                 sender,
@@ -179,7 +177,6 @@ public final class MotdCommand extends BaseCommand implements Listener {
 
         try {
             plugin.getConfig().set("motd", motd);
-            plugin.saveConfig();
 
             plugin.sendMessage(
                 sender,
@@ -206,7 +203,9 @@ public final class MotdCommand extends BaseCommand implements Listener {
     @Description("Reload the plugin configuration.")
     public void onReload(CommandSender sender) {
         try {
-            plugin.registerConfigs();
+            plugin.getMessagesConfig().forceReload();
+            plugin.getConfig().forceReload();
+
             plugin.sendMessage(sender, plugin.localize("messages.reload.success"));
         } catch (Exception e) {
             plugin.sendMessage(sender, plugin.localize("messages.reload.failed"));
