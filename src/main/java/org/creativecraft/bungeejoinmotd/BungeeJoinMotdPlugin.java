@@ -3,11 +3,11 @@ package org.creativecraft.bungeejoinmotd;
 import co.aikar.commands.BungeeCommandManager;
 import co.aikar.commands.CommandReplacements;
 import co.aikar.commands.MessageType;
+import de.leonhard.storage.Config;
 import de.themoep.minedown.MineDown;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.plugin.Plugin;
-import net.md_5.bungee.config.Configuration;
 import org.bstats.bungeecord.MetricsLite;
 import org.creativecraft.bungeejoinmotd.commands.MotdCommand;
 import org.creativecraft.bungeejoinmotd.config.MessagesConfig;
@@ -37,22 +37,6 @@ public final class BungeeJoinMotdPlugin extends Plugin {
     }
 
     /**
-     * Load the plugin.
-     */
-    @Override
-    public void onLoad() {
-        //
-    }
-
-    /**
-     * Disable the plugin.
-     */
-    @Override
-    public void onDisable() {
-        //
-    }
-
-    /**
      * Register the plugin configuration.
      */
     public void registerConfigs() {
@@ -75,7 +59,7 @@ public final class BungeeJoinMotdPlugin extends Plugin {
         BungeeCommandManager commandManager = new BungeeCommandManager(this);
         CommandReplacements replacements = commandManager.getCommandReplacements();
 
-        replacements.addReplacement("motd", getConfig().getString("command", "motd"));
+        replacements.addReplacement("motd", getConfig().getString("command"));
 
         commandManager.setFormat(MessageType.ERROR, ChatColor.GREEN, ChatColor.WHITE, ChatColor.GRAY);
         commandManager.setFormat(MessageType.SYNTAX, ChatColor.GREEN, ChatColor.WHITE, ChatColor.GRAY);
@@ -104,25 +88,18 @@ public final class BungeeJoinMotdPlugin extends Plugin {
     /**
      * Retrieve the plugin configuration.
      *
-     * @return Configuration
+     * @return Config
      */
-    public Configuration getConfig() {
+    public Config getConfig() {
         return settingsConfig.getConfig();
-    }
-
-    /**
-     * Save the plugin configuration.
-     */
-    public void saveConfig() {
-        settingsConfig.saveConfig();
     }
 
     /**
      * Retrieve the messages configuration.
      *
-     * @return Configuration
+     * @return Config
      */
-    public Configuration getMessagesConfig() {
+    public Config getMessagesConfig() {
         return messagesConfig.getMessages();
     }
 
@@ -133,11 +110,9 @@ public final class BungeeJoinMotdPlugin extends Plugin {
      * @return String
      */
     public String localize(String key) {
-        String message = messagesConfig.getMessages().getString(key);
-
         return ChatColor.translateAlternateColorCodes(
             '&',
-            message == null ? key + " is missing." : message
+            messagesConfig.getMessages().getString(key)
         );
     }
 

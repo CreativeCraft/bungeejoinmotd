@@ -1,24 +1,20 @@
 package org.creativecraft.bungeejoinmotd.config;
 
-import net.md_5.bungee.config.Configuration;
-import net.md_5.bungee.config.ConfigurationProvider;
-import net.md_5.bungee.config.YamlConfiguration;
+import de.leonhard.storage.Config;
+import de.leonhard.storage.internal.settings.ReloadSettings;
 import org.creativecraft.bungeejoinmotd.BungeeJoinMotdPlugin;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
+import java.util.Arrays;
+import java.util.List;
 
 public class SettingsConfig {
     private final BungeeJoinMotdPlugin plugin;
-    private Configuration config;
-    private File configFile;
+    private Config config;
 
     /**
-     * Initialize the SettingsConfig instance.
+     * Initialize the settings config instance.
      *
-     * @param plugin ExamplePlugin
+     * @param plugin BungeeJoinMotdPlugin
      */
     public SettingsConfig(BungeeJoinMotdPlugin plugin) {
         this.plugin = plugin;
@@ -30,59 +26,29 @@ public class SettingsConfig {
      * Register the config configuration.
      */
     public void registerConfig() {
-        if (!plugin.getDataFolder().exists()) {
-            plugin.getDataFolder().mkdir();
-        }
+        config = new Config("config.yml", plugin.getDataFolder().getPath());
+        config.setReloadSettings(ReloadSettings.MANUALLY);
 
-        configFile = new File(plugin.getDataFolder(), "config.yml");
+        List<String> motd = Arrays.asList(
+            "&a&m+&8&m                                              &a&m+&f",
+            "Welcome to &a&lLorem&fIpsum",
+            "",
+            "New to &a&lLorem&fIpsum? Type [&a/faq](run_command=/faq hover=&fRun the &a/faq&f command)&f to get started!",
+            "Type [&a/help](run_command=/help hover=&fRun the &a/help&f command)&f for a list of available commands.",
+            "&a&m+&8&m                                              &a&m+&f"
+        );
 
-        if (!configFile.exists()) {
-            try (InputStream inputStream = plugin.getResourceAsStream("config.yml")) {
-                Files.copy(inputStream, configFile.toPath());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        try {
-            config = ConfigurationProvider.getProvider(YamlConfiguration.class).load(
-                new File(plugin.getDataFolder(), "config.yml")
-            );
-        } catch (Exception e) {
-            //
-        }
+        config.setDefault("command", "motd");
+        config.setDefault("delay", 0);
+        config.setDefault("motd", motd);
     }
 
     /**
      * Retrieve the config configuration.
      *
-     * @return Configuration
+     * @return Config
      */
-    public Configuration getConfig() {
+    public Config getConfig() {
         return config;
-    }
-
-    /**
-     * Retrieve the config file.
-     *
-     * @return File
-     */
-    public File getConfigFile() {
-        return configFile;
-    }
-
-    /**
-     * Save the config configuration.
-     */
-    public void saveConfig() {
-        try {
-            ConfigurationProvider.getProvider(YamlConfiguration.class).save(
-                config,
-                new File(plugin.getDataFolder(), "config.yml")
-            );
-        } catch (Exception e) {
-            //
-        }
-
     }
 }
