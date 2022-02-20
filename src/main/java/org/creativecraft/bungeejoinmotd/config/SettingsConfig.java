@@ -32,14 +32,14 @@ public class SettingsConfig {
         config.setDefault("command", "motd");
         config.setDefault("delay", 0);
         config.setDefault("placeholders.time-format", "hh:mmaa");
-        config.setDefault("placeholders.date-format", "mm-dd-yyyy");
         config.setDefault("motd", Arrays.asList(
-            "&a&m+&8&m                                              &a&m+&f",
-            "Welcome to &a&lLorem&fIpsum",
+            "&a&m+&8&m                                                           &a&m+&f",
+            "Welcome to &a%bungee_name%&f, %player_name%!",
+            "It is currently &a%server_time%&f with &a%bungee_count%&f player(s) online.",
             "",
-            "New to &a&lLorem&fIpsum? Type [&a/faq](run_command=/faq hover=&fRun the &a/faq&f command)&f to get started!",
+            "New to &a%bungee_name%&f? Type [&a/faq](run_command=/faq hover=&fRun the &a/faq&f command)&f to get started!",
             "Type [&a/help](run_command=/help hover=&fRun the &a/help&f command)&f for a list of available commands.",
-            "&a&m+&8&m                                              &a&m+&f"
+            "&a&m+&8&m                                                           &a&m+&f"
         ));
     }
 
