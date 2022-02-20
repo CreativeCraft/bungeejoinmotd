@@ -31,6 +31,8 @@ public class SettingsConfig {
 
         config.setDefault("command", "motd");
         config.setDefault("delay", 0);
+        config.setDefault("placeholders.time-format", "hh:mmaa");
+        config.setDefault("placeholders.date-format", "mm-dd-yyyy");
         config.setDefault("motd", Arrays.asList(
             "&a&m+&8&m                                              &a&m+&f",
             "Welcome to &a&lLorem&fIpsum",

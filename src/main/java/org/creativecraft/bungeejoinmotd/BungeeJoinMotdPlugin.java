@@ -159,9 +159,13 @@ public final class BungeeJoinMotdPlugin extends Plugin {
             .forEach(string -> plugin.sendRawMessage(
                 sender,
                 string
-                    .replace("{server}", server)
-                    .replace("{player}", sender.getName())
-                    .replace("{time}", new SimpleDateFormat("hh:mmaa").format(new Date()))
+                    .replace("{server_name}", server)
+                    .replace("{bungee_name}", plugin.getProxy().getName())
+                    .replace("{player_name}", sender.getName())
+                    .replace("{player_count}", String.valueOf(plugin.getProxy().getPlayers().size()))
+                    .replace("{time}", new SimpleDateFormat(
+                        getConfig().getString("placeholder.time-format")).format(new Date())
+                    )
             ));
     }
 }
