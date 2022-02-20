@@ -7,6 +7,7 @@ import de.leonhard.storage.Config;
 import de.themoep.minedown.MineDown;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Plugin;
 import org.bstats.bungeecord.MetricsLite;
 import org.creativecraft.bungeejoinmotd.commands.MotdCommand;
@@ -14,7 +15,9 @@ import org.creativecraft.bungeejoinmotd.config.MessagesConfig;
 import org.creativecraft.bungeejoinmotd.config.SettingsConfig;
 import org.creativecraft.bungeejoinmotd.listener.EventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public final class BungeeJoinMotdPlugin extends Plugin {
@@ -138,5 +141,27 @@ public final class BungeeJoinMotdPlugin extends Plugin {
         sender.sendMessage(
             MineDown.parse(value)
         );
+    }
+
+    /**
+     * Send the message of the day.
+     *
+     * @param sender The command sender.
+     */
+    public void sendMotd(CommandSender sender) {
+        String server = sender instanceof ProxiedPlayer ?
+            plugin.getProxy().getPlayer(((ProxiedPlayer) sender).getUniqueId()).getServer().getInfo().getName() :
+            plugin.getProxy().getName();
+
+        plugin
+            .getConfig()
+            .getStringList("motd")
+            .forEach(string -> plugin.sendRawMessage(
+                sender,
+                string
+                    .replace("{server}", server)
+                    .replace("{player}", sender.getName())
+                    .replace("{time}", new SimpleDateFormat("hh:mmaa").format(new Date()))
+            ));
     }
 }

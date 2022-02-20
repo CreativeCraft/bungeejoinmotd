@@ -29,18 +29,16 @@ public class SettingsConfig {
         config = new Config("config.yml", plugin.getDataFolder().getPath());
         config.setReloadSettings(ReloadSettings.MANUALLY);
 
-        List<String> motd = Arrays.asList(
+        config.setDefault("command", "motd");
+        config.setDefault("delay", 0);
+        config.setDefault("motd", Arrays.asList(
             "&a&m+&8&m                                              &a&m+&f",
             "Welcome to &a&lLorem&fIpsum",
             "",
             "New to &a&lLorem&fIpsum? Type [&a/faq](run_command=/faq hover=&fRun the &a/faq&f command)&f to get started!",
             "Type [&a/help](run_command=/help hover=&fRun the &a/help&f command)&f for a list of available commands.",
             "&a&m+&8&m                                              &a&m+&f"
-        );
-
-        config.setDefault("command", "motd");
-        config.setDefault("delay", 0);
-        config.setDefault("motd", motd);
+        ));
     }
 
     /**
