@@ -62,7 +62,7 @@ public final class MotdCommand extends BaseCommand implements Listener {
             return;
         }
 
-        motd.forEach(string -> plugin.sendRawMessage(sender, string));
+        plugin.sendMotd(sender);
     }
 
     /**
