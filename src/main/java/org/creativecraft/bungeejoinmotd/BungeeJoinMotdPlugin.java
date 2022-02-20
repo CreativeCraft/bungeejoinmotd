@@ -149,9 +149,13 @@ public final class BungeeJoinMotdPlugin extends Plugin {
      * @param sender The command sender.
      */
     public void sendMotd(CommandSender sender) {
-        String server = sender instanceof ProxiedPlayer ?
+        String serverName = sender instanceof ProxiedPlayer ?
             plugin.getProxy().getPlayer(((ProxiedPlayer) sender).getUniqueId()).getServer().getInfo().getName() :
             plugin.getProxy().getName();
+
+        Integer serverCount = sender instanceof ProxiedPlayer ?
+            plugin.getProxy().getPlayer(((ProxiedPlayer) sender).getUniqueId()).getServer().getInfo().getPlayers().size() :
+            plugin.getProxy().getPlayers().size();
 
         plugin
             .getConfig()
@@ -160,7 +164,8 @@ public final class BungeeJoinMotdPlugin extends Plugin {
                 sender,
                 string
                     .replace("%player_name%", sender.getName())
-                    .replace("%server_name%", server)
+                    .replace("%server_name%", serverName)
+                    .replace("%server_count%", String.valueOf(serverCount))
                     .replace("%server_time%", new SimpleDateFormat(
                         getConfig().getString("placeholders.time-format")).format(new Date())
                     )

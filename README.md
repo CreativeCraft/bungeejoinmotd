@@ -27,7 +27,8 @@ A simple but powerful **on-join** message of the day for **BungeeCord** powered 
 |                **Placeholder**            |                  **Description**                  |
 | :---------------------------------------: | :-----------------------------------------------: |
 | %player_name%                             | The player's name.                                |
-| %server_name%                             | The Spigot server name.                           |
+| %server_name%                             | The current server name.                          |
+| %server_count%                            | The current server player count.                  |
 | %server_time%                             | The current server time.                          |
-| %bungee_name                              | The BungeeCord server name.                       |
-| %bungee_count%                            | The BungeeCord player count.                      |
+| %bungee_name%                             | The network server name.                          |
+| %bungee_count%                            | The network player count.                         |
