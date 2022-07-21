@@ -70,7 +70,7 @@ public class EventListener implements Listener {
             plugin.getProxy().getScheduler().schedule(plugin, new Runnable() {
                 @Override
                 public void run() {
-                    motd.forEach(string -> plugin.sendRawMessage(event.getPlayer(), string));
+                    plugin.sendMotd(event.getPlayer());
                 }
             }, Math.max(0, Math.min(5000, plugin.getConfig().getInt("delay"))), TimeUnit.MILLISECONDS);
         }

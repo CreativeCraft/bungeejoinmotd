@@ -7,7 +7,6 @@ import de.leonhard.storage.Config;
 import de.themoep.minedown.MineDown;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
-import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Plugin;
 import org.bstats.bungeecord.MetricsLite;
 import org.creativecraft.bungeejoinmotd.commands.MotdCommand;
@@ -149,14 +148,6 @@ public final class BungeeJoinMotdPlugin extends Plugin {
      * @param sender The command sender.
      */
     public void sendMotd(CommandSender sender) {
-        String serverName = sender instanceof ProxiedPlayer ?
-            plugin.getProxy().getPlayer(((ProxiedPlayer) sender).getUniqueId()).getServer().getInfo().getName() :
-            plugin.getProxy().getName();
-
-        Integer serverCount = sender instanceof ProxiedPlayer ?
-            plugin.getProxy().getPlayer(((ProxiedPlayer) sender).getUniqueId()).getServer().getInfo().getPlayers().size() :
-            plugin.getProxy().getPlayers().size();
-
         plugin
             .getConfig()
             .getStringList("motd")
@@ -164,13 +155,11 @@ public final class BungeeJoinMotdPlugin extends Plugin {
                 sender,
                 string
                     .replace("%player_name%", sender.getName())
-                    .replace("%server_name%", serverName)
-                    .replace("%server_count%", String.valueOf(serverCount))
                     .replace("%server_time%", new SimpleDateFormat(
                         getConfig().getString("placeholders.time-format")).format(new Date())
                     )
                     .replace("%bungee_name%", plugin.getProxy().getName())
-                    .replace("%bungee_count%", String.valueOf(plugin.getProxy().getPlayers().size()))
+                    .replace("%bungee_count%", String.valueOf(plugin.getProxy().getOnlineCount()))
             ));
     }
 }
